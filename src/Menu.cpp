@@ -24,6 +24,7 @@ void Menu::ejecutar_inventario() {
             cout<<"la accion '"<<accion<<"' no existe"<<endl;
         }
     }while(accion != "salir");
+    cout<<"aca ESTA EL ERROR";
     inventario.escribir_archivo();
 }
 

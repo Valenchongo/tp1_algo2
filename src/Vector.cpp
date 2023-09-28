@@ -5,7 +5,7 @@ using namespace std;
 
 
 Vector::Vector() {
-    this->tamanioMaximo = 2;
+    this->tamanioMaximo = 1;
     this->cantidadDatos = 0;
     this->datos = new Item*[tamanioMaximo];
 }
@@ -14,9 +14,8 @@ void Vector::alta(Item *dato) {
     if (cantidadDatos < tamanioMaximo){
         datos[cantidadDatos] = dato;
         cantidadDatos++;
-        if (cantidadDatos % 2 == 0){
-            tamanioMaximo += 2;
-        }
+        tamanioMaximo++;
+
     }
     else{
         throw VectorException();
@@ -30,10 +29,8 @@ void Vector::alta(Item *dato, size_t indice) {
             datos[i] = datos[i-1];
         }
         datos[indice] = dato;
+        tamanioMaximo++;
         cantidadDatos++;
-        if (cantidadDatos % 2 == 0){
-            tamanioMaximo += 2;
-        }
         datos[cantidadDatos] = dato_final;
     }
     else{
@@ -46,6 +43,7 @@ Item* Vector::baja() {
     if (cantidadDatos != 0){
         dato_a_devolver = datos[cantidadDatos - 1];
         datos[cantidadDatos - 1] = nullptr;
+        tamanioMaximo--;
         cantidadDatos --;
     }
     else{
@@ -68,7 +66,10 @@ Item* Vector::baja(size_t indice) {
         for (size_t i = indice; i < cantidadDatos; i++){
             datos[i] = datos[i+1];
         }
+        tamanioMaximo--;
         cantidadDatos--;
+
+
     }
     return dato_a_devolver;
 }

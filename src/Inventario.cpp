@@ -43,13 +43,28 @@ void Inventario::baja(string nombre_item) {
     }
 }
 
-void Inventario::escribir_archivo() {
-    ofstream achivoOutput("items.txt");
+void Inventario::escribir_archivo() {;
+    ofstream achivoOutput("items.csv");
     for (size_t i = 0; i < vector.tamanio() ; i++ ){
-        cout<<*vector[i]<<endl;
+        cout<<"3";
         achivoOutput << *vector[i] <<"\n";
+        delete vector[i];
     }
+    achivoOutput.close();
+}
 
+void Inventario::cargar_archivo() {
+    ifstream archivoInput("items.csv");
+    string linea;
+    string nombre;
+    string tipo;
+    while(getline(archivoInput,linea)){
+        nombre = extraer_nombre(linea);
+        tipo = extraer_tipo(linea);
+        Item* item = new Item(nombre,tipo);
+        vector.alta(item);
+    }
+    archivoInput.close();
 }
 
 string Inventario::extraer_nombre(std::string linea) {
@@ -71,22 +86,14 @@ string Inventario::extraer_tipo(std::string linea) {
 }
 
 
-void Inventario::cargar_archivo() {
-    ifstream archivoInput("items.txt");
-    string linea;
-    string nombre;
-    string tipo;
-    while(getline(archivoInput,linea)){
-        nombre = extraer_nombre(linea);
-        tipo = extraer_tipo(linea);
-        Item* item = new Item(nombre,tipo);
-        vector.alta(item);
-    }
-}
 
 void Inventario::consulta() {
+    string nombre;
+    string tipo;
     for(size_t i = 0; i < vector.tamanio(); i++){
-        cout<< i+1 <<") " <<*vector[i]<<endl;
+        cout<< i+1<<") ";
+        vector[i]->listarInformacion();
+        cout<<endl;
     }
 }
 
