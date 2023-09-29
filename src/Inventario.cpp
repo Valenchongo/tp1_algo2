@@ -1,5 +1,5 @@
 
-#include "Inventario.h"
+#include "../include/Inventario.h"
 using namespace std;
 Inventario::Inventario() {
 
@@ -44,13 +44,13 @@ void Inventario::baja(string nombre_item) {
 }
 
 void Inventario::escribir_archivo() {;
-    ofstream achivoOutput("items.csv");
+    ofstream archivoOutput("items.csv");
     for (size_t i = 0; i < vector.tamanio() ; i++ ){
         cout<<"3";
-        achivoOutput << *vector[i] <<"\n";
-        delete vector[i];
+        archivoOutput << *vector[i] <<"\n";
+        //delete vector[i];
     }
-    achivoOutput.close();
+    archivoOutput.close();
 }
 
 void Inventario::cargar_archivo() {

@@ -18,6 +18,8 @@ add_executable(ayp2_plantilla_tp1_2c2023
         main.cpp
         src/Menu.cpp
         include/Menu.hpp
+        src/Inventario.cpp
+        include/Inventario.h
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "programa.exe")

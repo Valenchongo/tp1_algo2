@@ -8,7 +8,7 @@
 #include <string>
 #include <iostream>
 #include "Item.hpp"
-#include "Inventario.h"
+
 
 using namespace std;
 

@@ -1,8 +1,9 @@
 
-#include "Menu.hpp"
+#include "../include/Menu.hpp"
+#include "../include/Inventario.h"
 #include <fstream>
 #include <iostream>
-#include "inventario.cpp"
+
 
 void Menu::ejecutar_inventario() {
     Inventario inventario{};

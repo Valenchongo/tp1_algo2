@@ -1,37 +1,55 @@
-#include "Vector.hpp"
+#include "../include/Vector.hpp"
 #include <string>
 #include <iostream>
 using namespace std;
 
 
 Vector::Vector() {
-    this->tamanioMaximo = 1;
+    this->tamanioMaximo = 5;
     this->cantidadDatos = 0;
     this->datos = new Item*[tamanioMaximo];
 }
 
+void Vector::redimensionar_agrandar(Item *dato) {
+    Item** aux = new Item*[tamanioMaximo];
+    for (size_t i = 0; i < cantidadDatos; i++){
+        aux[i] = datos[i];
+    }
+    aux[cantidadDatos] = dato;
+    datos = aux;
+}
 void Vector::alta(Item *dato) {
-    if (cantidadDatos < tamanioMaximo){
-        datos[cantidadDatos] = dato;
-        cantidadDatos++;
-        tamanioMaximo++;
-
+    if (cantidadDatos % 5 == 0 && cantidadDatos != 0){
+        tamanioMaximo += 5;
+        redimensionar_agrandar(dato);
     }
     else{
-        throw VectorException();
+        datos[cantidadDatos] = dato;
     }
-}
+    cantidadDatos++;
+    cout<<"elm tamaño maximo es:"<<tamanioMaximo<<endl;
+    }
+
+
+
 
 void Vector::alta(Item *dato, size_t indice) {
-    if (cantidadDatos < tamanioMaximo && indice <= cantidadDatos){
+    if(indice == cantidadDatos){
+        alta(dato);
+    }
+    else if (indice < cantidadDatos){
         Item* dato_final = datos[cantidadDatos - 1];
         for (size_t i = cantidadDatos; i > indice; i --){
             datos[i] = datos[i-1];
         }
         datos[indice] = dato;
-        tamanioMaximo++;
+        if (cantidadDatos % 5 == 0 && cantidadDatos != 0){
+            tamanioMaximo += 5;
+            redimensionar_agrandar(dato_final);
+        }else{
+            datos[cantidadDatos] = dato_final;
+        }
         cantidadDatos++;
-        datos[cantidadDatos] = dato_final;
     }
     else{
         throw VectorException();
@@ -43,8 +61,8 @@ Item* Vector::baja() {
     if (cantidadDatos != 0){
         dato_a_devolver = datos[cantidadDatos - 1];
         datos[cantidadDatos - 1] = nullptr;
-        tamanioMaximo--;
         cantidadDatos --;
+        tamanioMaximo--;
     }
     else{
         throw VectorException();
@@ -66,10 +84,8 @@ Item* Vector::baja(size_t indice) {
         for (size_t i = indice; i < cantidadDatos; i++){
             datos[i] = datos[i+1];
         }
-        tamanioMaximo--;
         cantidadDatos--;
-
-
+        tamanioMaximo--;
     }
     return dato_a_devolver;
 }
@@ -93,7 +109,7 @@ Item *&Vector::operator[](size_t indice) {
 
 Vector::~Vector(){
     for (size_t i = 0; i < cantidadDatos; i++){
-        //datos[i] == nullptr;
+        //datos[i] = nullptr;
     }
-    //datos == nullptr;
+    //datos = nullptr;
 }

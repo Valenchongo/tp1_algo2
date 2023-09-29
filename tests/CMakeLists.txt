@@ -15,6 +15,7 @@ add_executable(Google_Tests_run
         ../src/Item.cpp
         ../src/Inventario.cpp
         ../include/Inventario.h
+        ../src/Menu.cpp
 )
 
 target_link_libraries(Google_Tests_run gtest gtest_main)
