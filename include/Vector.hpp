@@ -25,6 +25,8 @@ private:
     //pre: Se le debe pasar por parametro el el ultimo dato del vector antes de ser redimensionado.
     //post: redimensiona el vector haciendolo mas grande.
     void redimensionar_agrandar(Item* dato);
+
+    void redimensionar_achicar();
 public:
     // Constructor.
     Vector();
