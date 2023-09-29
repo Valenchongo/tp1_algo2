@@ -46,9 +46,9 @@ void Inventario::baja(string nombre_item) {
 void Inventario::escribir_archivo() {;
     ofstream archivoOutput("items.csv");
     for (size_t i = 0; i < vector.tamanio() ; i++ ){
-        cout<<"3";
+        cout<<i;
         archivoOutput << *vector[i] <<"\n";
-        //delete vector[i];
+        delete vector[i];
     }
     archivoOutput.close();
 }

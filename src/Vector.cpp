@@ -127,5 +127,5 @@ Vector::~Vector(){
     for (size_t i = 0; i < cantidadDatos; i++){
         datos[i] = nullptr;
     }
-    datos = nullptr;
+    delete [] datos;
 }

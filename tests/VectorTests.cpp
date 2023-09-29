@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "Vector.hpp"
 
-class VectorTests : public ::testing::Test {
+    class VectorTests : public ::testing::Test {
 protected:
     Vector vector{};
     Item* dato{};
