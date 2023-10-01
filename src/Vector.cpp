@@ -38,7 +38,6 @@ void Vector::alta(Item *dato) {
         datos[cantidadDatos] = dato;
     }
     cantidadDatos++;
-    cout<<"elm tamaño maximo es:"<<tamanioMaximo<<endl;
     }
 
 
@@ -78,7 +77,6 @@ Item* Vector::baja() {
     else{
         throw VectorException();
     }
-    cout<<"el tamaño maximo es: "<<tamanioMaximo <<endl;
     return dato_a_devolver;
 
 }
@@ -102,7 +100,6 @@ Item* Vector::baja(size_t indice) {
             redimensionar_achicar();
         }
     }
-    cout<<"el tamaño maximo es: "<<tamanioMaximo <<endl;
     return dato_a_devolver;
 }
 
